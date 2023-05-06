@@ -18,6 +18,8 @@ workspace {
         }
 
         user -> nginx "Calls"
+        rabbitMQ -> Service2 "Notifies about published message" "" "Asynchronous"
+        Service1 -> rabbitMq "Publishes new message" "" "Asynchronous"
     }
 
     views {

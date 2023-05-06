@@ -95,6 +95,8 @@ graph TB
   subgraph diagram [Spring Demo - Test service - Components]
     style diagram fill:#ffffff,stroke:#ffffff
 
+    3["<div style='font-weight: bold'>Message Bus</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div><div style='font-size: 80%; margin-top:10px'>RabbitMQ</div>"]
+    style 3 fill:#ffff00,stroke:#b2b200,color:#000000
     4["<div style='font-weight: bold'>API Gateway</div><div style='font-size: 70%; margin-top: 0px'>[Container]</div><div style='font-size: 80%; margin-top:10px'>NGNIX</div>"]
     style 4 fill:#dddddd,stroke:#9a9a9a,color:#000000
 
@@ -132,6 +134,8 @@ graph TB
     9-. "<div>Calls component</div><div style='font-size: 70%'>[JVM]</div>" .->8
     4-. "<div>Calls the controller</div><div style='font-size: 70%'>[HTTPS]</div>" .->11
     11-- "<div></div><div style='font-size: 70%'></div>" -->10
+    3-. "<div>Notifies about published<br />message</div><div style='font-size: 70%'></div>" .->10
+    9-. "<div>Publishes new message</div><div style='font-size: 70%'></div>" .->3
   end
 ```
 
