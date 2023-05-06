@@ -24,11 +24,6 @@ workspace {
         styles {
             !include styles
         }
-
-        component test {
-            include *
-            autoLayout lr
-        }
     }
 
 }
