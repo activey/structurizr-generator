@@ -1,3 +1,5 @@
+[TOC]
+
 This project contains a dedicated maven plugin for generating a [Structurizr](https://structurizr.com/) DSL code representing a single C4 container,
 which then can be included as a part of other, bigger eco-system.
 
@@ -141,3 +143,12 @@ graph TB
 
 # Java annotations
 TODO: write usage description
+
+# Running with docker
+An example [structurizr-spring-demo](structurizr-spring-demo) module consists of a `docker-compose.yml` file
+which makes it easy to try out the solution with Structurizr Lite. Just run `docker compoes up` and open
+the app in your web browser (http://localhost:8080).
+
+# Composing a bigger diagram
+TODO: write description on how to make it possible to build a bigger architecture diagram with git submodules
+and other git repositories (export.dsl).
