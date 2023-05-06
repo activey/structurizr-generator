@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.structurizr.generator</groupId>
+        <artifactId>dsl-generator</artifactId>
+        <version>0.0.1</version>
+    </parent>
+
+    <artifactId>structurizr-spring-demo</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring-boot.version>3.0.0</spring-boot.version>
+        <structurizr-generator.version>0.0.1</structurizr-generator.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+        </dependency>
+
+        <!-- Structurizr -->
+        <dependency>
+            <groupId>com.structurizr.generator</groupId>
+            <artifactId>structurizr-annotations</artifactId>
+            <version>${structurizr-generator.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.structurizr.generator</groupId>
+                <artifactId>structurizr-maven-plugin</artifactId>
+                <version>${structurizr-generator.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>dsl-generator</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scanPackages>
+                        <scanPackage>com.structurizr.demo</scanPackage>
+                    </scanPackages>
+                    <exclusions>
+                        <supertypes>
+                            <supertype>org.springframework.core.convert.converter.Converter</supertype>
+                        </supertypes>
+                    </exclusions>
+                    <container>
+                        <id>test</id>
+                        <name>Test service</name>
+                    </container>
+                    <outputDirectory>${project.basedir}/c4/model</outputDirectory>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.structurizr.generator</groupId>
+                        <artifactId>structurizr-components-finder-spring</artifactId>
+                        <version>${structurizr-generator.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
